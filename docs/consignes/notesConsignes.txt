@@ -1,0 +1,20 @@
+Faire un diagramme UML (optionnel)
+
+Fonctionnalités :
+    - annonyme :
+	- index page avec statistics d'utilisation et desc du service
+	- offre de 10$mois pour l'envoie illimité et une synchronysation des messages et contacts
+	- s'enregistrer et s'authentifier
+    - Authentifié :
+	- CRUD sur les contacts
+	- Envoyer un message à un contact
+	- Reprendre une conversation
+	- Supprimer une conversation
+	- WebService pour synchroniser les sms and les contacts
+	- Statistiques sur les échanges de sms par contacts
+	- Voir et éditer son profil
+	- Voir et éditer sa facture
+	- Déconnecter
+    - Auth comme administrateur :
+	- Voir et manager tout les utilisateurs de l'appli
+	- Voir toutes les factures
