@@ -1,20 +1,54 @@
 Faire un diagramme UML (optionnel)
 
 Fonctionnalités :
-    - annonyme :
-	- index page avec statistics d'utilisation et desc du service
-	- offre de 10$mois pour l'envoie illimité et une synchronysation des messages et contacts
-	- s'enregistrer et s'authentifier
-    - Authentifié :
-	- CRUD sur les contacts
-	- Envoyer un message à un contact
-	- Reprendre une conversation
-	- Supprimer une conversation
-	- WebService pour synchroniser les sms and les contacts
-	- Statistiques sur les échanges de sms par contacts
-	- Voir et éditer son profil
-	- Voir et éditer sa facture
-	- Déconnecter
-    - Auth comme administrateur :
-	- Voir et manager tout les utilisateurs de l'appli
-	- Voir toutes les factures
+	- Menu de navigation à la bootstrap (bande header nav)
+		- Lien vers :
+			- Auth || logout
+			- Envoyer messages
+			- Gérer contacts
+	- annonyme :
+		- index page avec statistics d'utilisation et desc du service
+			- Nombre d'utilisateurs
+			- Nombre de sms envoyé
+			- Historiques de conversation par dates avec
+				- Voir
+				- Supprimer
+		- offre de 10$ mois pour l'envoie illimité et une synchronysation des messages et contacts
+		- s'enregistrer et s'authentifier
+			- Numéro de téléphone
+			- Nom
+			- Prénom
+			- Email
+			- Carte de crédit
+			- Password
+			- Aller à l'index Auth après enregistrement
+	- Authentifié :
+		- CRUD sur les contacts
+			- Numéro de téléphone
+			- Nom
+			- Prénom
+			- Adresse
+			- E-mail
+			- Sur la suppression d'un contacts, les conversations associées sont supprimées
+			- Indexation des updates par timestamp pour la syncrhonisation
+		- Envoyer un message à un contact
+			- Message texte caractérisé par un numéro de destination + timestamp
+			- Lors de la réception d'un sms, affichage du nom - prénom de l'expéditeur si connu et du numéro si inconnu
+			- Utilisation de l'api JMS (SENDER\nMESSAGE\nRECIPIENT). La partie envoi et réception sur smartphone sera bouchonnée.
+		- Reprendre une conversation
+			- comme sur ton tél ;)
+		- Supprimer une conversation
+		- WebService pour synchroniser les sms and les contacts
+			- La synchronisation ne doit pas etre bouchonnée : utilisation de SOAP web service ?
+		- Statistiques sur les échanges de sms par contacts
+		- Voir et éditer son profil
+			- Toutes données sont éditables sauf le nom d'utilisateur
+		- Voir et éditer sa facture
+		- Déconnecter
+	s- Auth comme administrateur :
+		- Voir et manager tout les utilisateurs de l'application
+			- Lister
+			- Voir
+			- Supprimer
+		- Voir toutes les factures
+			- Lister (tableau simple)
