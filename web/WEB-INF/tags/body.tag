@@ -35,6 +35,10 @@
                                 </li>
                             </ul>
                         </c:when>
+                        <c:otherwise>
+                            <c:url value="/signin" var="signIn" />
+                            <a class="btn btn-default navbar-btn" href="${signIn}">Sign In</a>
+                        </c:otherwise>
                     </c:choose>
                     <div class="nav navbar-nav navbar-right">
                         <c:choose>

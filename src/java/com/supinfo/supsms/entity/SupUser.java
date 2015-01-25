@@ -36,6 +36,9 @@ public class SupUser implements Serializable {
     private Long phoneNumber;
     
     @Column
+    private String username;
+    
+    @Column
     @NotNull
     private String lastName;
     
@@ -188,6 +191,20 @@ public class SupUser implements Serializable {
      */
     public void setAddress(Addr address) {
         this.address = address;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
     
 }
