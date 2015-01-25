@@ -1,7 +1,7 @@
 package com.supinfo.supsms.web.servlet;
 
 import com.supinfo.supsms.dao.SupUserDao;
-import com.supinfo.supsms.dao.jpa.JpaSupUserDao;
+import com.supinfo.supsms.entity.SupUser;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -35,7 +35,8 @@ public class LoginServlet extends HttpServlet {
         }
         String password = req.getParameter("password");
         
-        if(supUserDao.getSupUser(phoneNumber).getPassword().equals(password)) {
+        SupUser supUser = supUserDao.getSupUser(phoneNumber);
+        if(supUser != null && supUser.getPassword().equals(password)) {
             req.getSession().setAttribute("user", phoneNumber);
             resp.sendRedirect(getServletContext().getContextPath());
         } else {

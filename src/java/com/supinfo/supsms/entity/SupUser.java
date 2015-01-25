@@ -1,9 +1,13 @@
 package com.supinfo.supsms.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -32,10 +36,16 @@ public class SupUser implements Serializable {
     private Long phoneNumber;
     
     @Column
+    @NotNull
     private String lastName;
     
     @Column
+    @NotNull
     private String firstName;
+    
+    @Column
+    @NotNull
+    private String password;
     
     @Column
     private String email;
@@ -43,8 +53,11 @@ public class SupUser implements Serializable {
     @Column
     private String credCard;
     
-    @Column
-    private String password;
+    @ManyToOne
+    private Addr address;
+    
+    @ManyToMany
+    private List<SupUser> contacts;
     
     public Long getPhoneNumber() {
         return phoneNumber;
@@ -147,6 +160,34 @@ public class SupUser implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the contacts
+     */
+    public List<SupUser> getContacts() {
+        return contacts;
+    }
+
+    /**
+     * @param contacts the contacts to set
+     */
+    public void setContacts(List<SupUser> contacts) {
+        this.contacts = contacts;
+    }
+
+    /**
+     * @return the address
+     */
+    public Addr getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(Addr address) {
+        this.address = address;
     }
     
 }

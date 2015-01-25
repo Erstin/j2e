@@ -2,12 +2,10 @@ package com.supinfo.supsms.dao.jpa;
 
 import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SupUser;
-import java.lang.reflect.Method;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
