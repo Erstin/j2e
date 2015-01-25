@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:body>
+<t:body ongletTitle="${ongletTitle}">
+    ${ongletTitle}
     <form method="POST">
             <div>
                 <label for="username">Username :</label>

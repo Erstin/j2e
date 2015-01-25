@@ -1,5 +1,8 @@
+<%@ attribute name="ongletTitle" required="false" type="java.lang.String" description="Title of the onglet" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@tag description="Base Template" pageEncoding="UTF-8"%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +10,14 @@
         <link rel="stylesheet" type="text/css" href="res/css/bootstrap.min.css" />
         <script language="javascript" type="text/javascript" src="res/js/jquery.1.11.2.min.js"></script>
         <script language="javascript" type="text/javascript" src="res/js/bootstrap.min.js"></script>
-        <title>SupSMS</title>
+        <title>
+            <c:if test="${! empty ongletTitle}">
+                ${ongletTitle}
+            </c:if>
+            <c:if test="${empty ongletTitle}">
+                SupSMS
+            </c:if>
+        </title>
     </head>
     <body>
         <nav class="navbar navbar-default">
