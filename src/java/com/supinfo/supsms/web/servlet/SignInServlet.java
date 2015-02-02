@@ -76,7 +76,11 @@ public class SignInServlet extends HttpServlet {
         address.setStreet(street);
         supUser.setAddress(address);
 
-        supUserDao.addUser(supUser);
+        try {
+            supUserDao.addUser(supUser);
+        } catch (Exception ex) {
+            doGet(req, resp);
+        }
 
         req.getSession().setAttribute("user", supUser.getPhoneNumber());
         resp.sendRedirect(getServletContext().getContextPath());
