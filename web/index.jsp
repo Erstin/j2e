@@ -19,5 +19,8 @@
         <c:if test="${not empty nbContact and not empty nbSMS}">
             Vous avez ${nbContact} contacts et ${nbSMS} sms.
         </c:if>
+        <c:if test="${empty nbContact}">
+            Il y a ${nbSMS} sms qui transite avec cette application.
+        </c:if>
     </p>
 </t:body>

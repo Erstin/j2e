@@ -21,4 +21,6 @@ public interface SMSDao {
     
     public List<SMS> getUserSMS(SupUser receiver);
     
+    public Number getNbSMS();
+    
 }

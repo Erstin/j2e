@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -78,5 +79,12 @@ public class JpaSMSDao implements SMSDao {
         query.where(predicates.toArray(new Predicate[predicates.size()]));
         
         return  em.createQuery(query).getResultList();
+    }
+
+    @Override
+    public Number getNbSMS() {
+
+        Query q = em.createQuery ("SELECT count(x) FROM SMS x");
+        return (Number) q.getSingleResult ();
     }
 }

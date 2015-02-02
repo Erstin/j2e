@@ -40,6 +40,8 @@ public class indexServlet extends HttpServlet {
             SupUser supUser = supUserDao.getSupUser((Long)userPhoneNumber);
             req.setAttribute("nbContact", supUser.getContacts().size());
             req.setAttribute("nbSMS", smsDao.getUserSMS(supUser).size());
+        } else {
+            req.setAttribute("nbSMS", smsDao.getNbSMS());
         }
         req.setAttribute("nbUser", ServerCommonVar.nbUserLogged);
         req.getRequestDispatcher("/index.jsp").forward(req, resp);

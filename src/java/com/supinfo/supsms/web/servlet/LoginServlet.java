@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
         if(supUser != null && supUser.getPassword().equals(password)) {
             ServerCommonVar.nbUserLogged++;
             req.getSession().setAttribute(Constantes.SESSION_USER_ATTRIBUTE_NAME, phoneNumber);
-            resp.sendRedirect(getServletContext().getContextPath() + "/home");
+            resp.sendRedirect(getServletContext().getContextPath() + Constantes.HOME_PATH);
         } else {
             doGet(req, resp);
         }

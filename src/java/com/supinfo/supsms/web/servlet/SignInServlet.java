@@ -4,6 +4,7 @@ import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.Addr;
 import com.supinfo.supsms.entity.Street;
 import com.supinfo.supsms.entity.SupUser;
+import com.supinfo.supsms.utils.Constantes;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -83,7 +84,7 @@ public class SignInServlet extends HttpServlet {
         }
 
         req.getSession().setAttribute("user", supUser.getPhoneNumber());
-        resp.sendRedirect(getServletContext().getContextPath());
+        resp.sendRedirect(getServletContext().getContextPath()+ Constantes.HOME_PATH);
     }
 
 }
