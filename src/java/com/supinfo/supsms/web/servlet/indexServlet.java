@@ -9,7 +9,7 @@ import com.supinfo.supsms.dao.SMSDao;
 import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SupUser;
 import com.supinfo.supsms.utils.Constantes;
-import com.supinfo.supsms.utils.ServerCommonVar;
+import com.supinfo.supsms.utils.Common;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -35,15 +35,15 @@ public class indexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         
-        Object userPhoneNumber = req.getSession().getAttribute(Constantes.SESSION_USER_ATTRIBUTE_NAME);
-        if( userPhoneNumber != null) {
-            SupUser supUser = supUserDao.getSupUser((Long)userPhoneNumber);
+        
+        SupUser supUser = new Common().getUserFromSession(req, supUserDao);
+        if( supUser != null) {
             req.setAttribute("nbContact", supUser.getContacts().size());
             req.setAttribute("nbSMS", smsDao.getUserSMS(supUser).size());
         } else {
             req.setAttribute("nbSMS", smsDao.getNbSMS());
         }
-        req.setAttribute("nbUser", ServerCommonVar.nbUserLogged);
+        req.setAttribute("nbUser", Common.nbUserLogged);
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

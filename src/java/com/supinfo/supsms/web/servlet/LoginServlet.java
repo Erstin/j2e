@@ -3,7 +3,7 @@ package com.supinfo.supsms.web.servlet;
 import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SupUser;
 import com.supinfo.supsms.utils.Constantes;
-import com.supinfo.supsms.utils.ServerCommonVar;
+import com.supinfo.supsms.utils.Common;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
         
         SupUser supUser = supUserDao.getSupUser(phoneNumber);
         if(supUser != null && supUser.getPassword().equals(password)) {
-            ServerCommonVar.nbUserLogged++;
+            Common.nbUserLogged++;
             req.getSession().setAttribute(Constantes.SESSION_USER_ATTRIBUTE_NAME, phoneNumber);
             resp.sendRedirect(getServletContext().getContextPath() + Constantes.HOME_PATH);
         } else {

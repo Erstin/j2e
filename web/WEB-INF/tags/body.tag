@@ -34,7 +34,10 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions possibles<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">G&eacute;rer Contacts</a></li>
+                                        <li>
+                                            <c:url var="manageContactUrl" value="/contacts" />
+                                            <a href="${manageContactUrl}">G&eacute;rer Contacts</a>
+                                        </li>
                                         <li><a href="#">Envoyer un message</a></li>
                                     </ul>
                                 </li>

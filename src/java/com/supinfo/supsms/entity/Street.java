@@ -16,7 +16,7 @@ public class Street {
     
     private String streetName;
     private String cityName;
-    private String ZIPCode;
+    private String zipCode;
 
     /**
      * @return the streetName
@@ -47,22 +47,22 @@ public class Street {
     }
 
     /**
-     * @return the ZIPCode
+     * @return the zipCode
      */
     public String getZIPCode() {
-        return ZIPCode;
+        return zipCode;
     }
 
     /**
-     * @param ZIPCode the ZIPCode to set
+     * @param ZIPCode the zipCode to set
      */
     public void setZIPCode(String ZIPCode) {
-        this.ZIPCode = ZIPCode;
+        this.zipCode = ZIPCode;
     }
 
     @Override
     public int hashCode() {
-        return (streetName + cityName+ ZIPCode).hashCode();
+        return (streetName + cityName+ zipCode).hashCode();
     }
 
     @Override
@@ -74,6 +74,6 @@ public class Street {
         Street other = (Street)obj;
         return streetName.equals(other.getStreetName()) 
                 && cityName.equals(other.getCityName()) 
-                && ZIPCode.equals(other.getZIPCode());
+                && zipCode.equals(other.getZIPCode());
     }
 }
