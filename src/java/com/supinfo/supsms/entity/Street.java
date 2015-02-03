@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.supinfo.supsms.entity;
 
 import javax.persistence.Embeddable;
@@ -49,15 +44,15 @@ public class Street {
     /**
      * @return the zipCode
      */
-    public String getZIPCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
     /**
-     * @param ZIPCode the zipCode to set
+     * @param zipCode the zipCode to set
      */
-    public void setZIPCode(String ZIPCode) {
-        this.zipCode = ZIPCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     @Override
@@ -74,6 +69,6 @@ public class Street {
         Street other = (Street)obj;
         return streetName.equals(other.getStreetName()) 
                 && cityName.equals(other.getCityName()) 
-                && zipCode.equals(other.getZIPCode());
+                && zipCode.equals(other.getZipCode());
     }
 }

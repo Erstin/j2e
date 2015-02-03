@@ -2,6 +2,8 @@ package com.supinfo.supsms.dao.jpa;
 
 import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SupUser;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,6 +27,11 @@ public class JpaSupUserDao implements SupUserDao {
     @Override
     public void delUser(SupUser supUser) {
         em.remove(supUser);
+    }
+
+    @Override
+    public <T> void mergeSupUser (SupUser supUser) {
+        em.merge(supUser);
     }
 
     @Override

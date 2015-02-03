@@ -1,6 +1,7 @@
 package com.supinfo.supsms.dao;
 
 import com.supinfo.supsms.entity.SupUser;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import javax.ejb.Local;
@@ -13,11 +14,13 @@ import javax.ejb.Local;
 public interface SupUserDao {
 
     public void addUser(SupUser supUser);
-    
+
     public void delUser(SupUser supUser);
-    
+
+    public <T> void mergeSupUser (SupUser supUser);
+
     public SupUser getSupUser(Long phoneNumber);
-    
+
     public List<SupUser> getAllUser();
-    
+
 }

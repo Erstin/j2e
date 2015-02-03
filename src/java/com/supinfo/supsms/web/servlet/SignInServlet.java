@@ -71,7 +71,7 @@ public class SignInServlet extends HttpServlet {
         }
 
         if (req.getParameter("zipcode") != null) {
-            street.setZIPCode(req.getParameter("zipcode"));
+            street.setZipCode(req.getParameter("zipcode"));
         }
 
         address.setStreet(street);
