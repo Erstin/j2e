@@ -3,6 +3,7 @@ package com.supinfo.supsms.dao.jpa;
 import com.supinfo.supsms.dao.SMSDao;
 import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SMS;
+import com.supinfo.supsms.entity.SMS_;
 import com.supinfo.supsms.entity.SupUser;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -54,8 +55,8 @@ public class JpaSMSDao implements SMSDao {
         CriteriaDelete<SMS> delete = cb.createCriteriaDelete(SMS.class);
         Root e = delete.from(SMS.class);
 
-        delete.where(cb.equal(e.get("receiver"), receiver));
-        delete.where(cb.equal(e.get("sender"), sender));
+        delete.where(cb.equal(e.get(SMS_.receiver), receiver));
+        delete.where(cb.equal(e.get(SMS_.sender), sender));
 
         // perform update
         this.em.createQuery(delete).executeUpdate();
@@ -71,13 +72,13 @@ public class JpaSMSDao implements SMSDao {
         List<Predicate> predicates = new ArrayList();
 
         if (receiver != null) {
-            predicates.add(cb.equal(sms.get("receiver"), receiver));
+            predicates.add(cb.equal(sms.get(SMS_.receiver), receiver));
         }
         if (sender != null) {
-            predicates.add(cb.equal(sms.get("sender"), sender));
+            predicates.add(cb.equal(sms.get(SMS_.sender), sender));
         }
         if (dateSent != null) {
-            predicates.add(cb.equal(sms.get("dateSent").as(Timestamp.class), dateSent));
+            predicates.add(cb.equal(sms.get(SMS_.dateSent).as(Timestamp.class), dateSent));
         }
 
         query.where(predicates.toArray(new Predicate[predicates.size()]));
@@ -95,7 +96,7 @@ public class JpaSMSDao implements SMSDao {
         List<Predicate> predicates = new ArrayList();
 
         if (receiver != null) {
-            predicates.add(cb.equal(sms.get("receiver"), receiver));
+            predicates.add(cb.equal(sms.get(SMS_.receiver), receiver));
         }
 
         query.where(predicates.toArray(new Predicate[predicates.size()]));
