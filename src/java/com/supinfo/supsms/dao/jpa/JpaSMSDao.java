@@ -1,7 +1,6 @@
 package com.supinfo.supsms.dao.jpa;
 
 import com.supinfo.supsms.dao.SMSDao;
-import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SMS;
 import com.supinfo.supsms.entity.SMS_;
 import com.supinfo.supsms.entity.SupUser;
@@ -11,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,9 +26,6 @@ import javax.persistence.criteria.Root;
  */
 @Stateless
 public class JpaSMSDao implements SMSDao {
-
-    @EJB
-    SupUserDao supUserDao;
 
     @PersistenceContext
     private EntityManager em;
