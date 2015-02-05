@@ -1,8 +1,6 @@
 package com.supinfo.supsms.dao;
 
 import com.supinfo.supsms.entity.SupUser;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 import javax.ejb.Local;
 

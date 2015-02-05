@@ -26,7 +26,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="nav navbar-nav navbar-left">
                         <c:url value="/home" var="homeUrl" />
-                        <a href="${homeUrl}" class="btn btn-default navbar-btn">
+                        <a href="${homeUrl}" class="btn btn-default navbar-btn" style="float:left">
                             <img src="res/img/home.jpg" width="20px" height="20px"/>
                         </a>
                         <c:if test="${not empty user}">
@@ -36,9 +36,11 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
                                             <c:url var="manageContactUrl" value="/contacts" />
-                                            <a href="${manageContactUrl}">G&eacute;rer Contacts</a>
+                                            <a href="${manageContactUrl}">G&eacute;rer mes contacts</a>
                                         </li>
-                                        <li><a href="#">Envoyer un message</a></li>
+                                        <li>
+                                            <c:url var="manageSmsUrl" value="/smsManager" />
+                                            <a href="${manageSmsUrl}">G&eacute;rer mes messages</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -59,8 +61,8 @@
                         </c:choose>
                         <a class="btn btn-default navbar-btn" href="${logInOrOut}">${logVar}</a>
                     </div>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div>
         </nav>
         <jsp:doBody/>
     </body>
