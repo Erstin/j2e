@@ -9,9 +9,13 @@ import com.supinfo.supsms.dao.SMSDao;
 import com.supinfo.supsms.dao.SupUserDao;
 import com.supinfo.supsms.entity.SMS;
 import com.supinfo.supsms.entity.SupUser;
+import com.supinfo.supsms.service.SendSMSService;
 import com.supinfo.supsms.utils.Common;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.jms.JMSException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +35,9 @@ public class smsServlet extends HttpServlet {
     @EJB
     private SMSDao smsDao;
 
+    @EJB
+    private SendSMSService sendSMSService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -43,7 +50,7 @@ public class smsServlet extends HttpServlet {
                     doPut(req, resp);
                     break;
                 case "DELETE":
-                    doDelete(req, resp);
+                    // doDelete(req, resp);
                     break;
             }
         }
@@ -66,7 +73,12 @@ public class smsServlet extends HttpServlet {
             String message = req.getParameter("message");
             sms.setMessage(message);
 
-            smsDao.addSMS(sms);
+            try {
+                sendSMSService.send(sms);
+                // smsDao.addSMS(sms);
+            } catch (JMSException ex) {
+                Logger.getLogger(smsServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
@@ -75,21 +87,21 @@ public class smsServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+
         SupUser me = new Common().getUserFromSession(req, supUserDao);
-        
+
         String phoneNumber = req.getParameter("phoneNumber");
-        if(phoneNumber != null) {
+        if (phoneNumber != null) {
             SupUser him = supUserDao.getSupUser(Long.parseLong(phoneNumber));
-            
+
             smsDao.delUserSMS(me, him);
         }
-        
+
     }
 
     private void goToSmsPage(SupUser me, HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("senders", smsDao.getConversations(me));
+        // req.setAttribute("senders", smsDao.getConversations(me));
         req.getRequestDispatcher("/jsp/sms.jsp").forward(req, resp);
     }
 }

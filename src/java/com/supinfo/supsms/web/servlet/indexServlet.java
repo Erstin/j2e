@@ -39,7 +39,7 @@ public class indexServlet extends HttpServlet {
         SupUser supUser = new Common().getUserFromSession(req, supUserDao);
         if( supUser != null) {
             req.setAttribute("nbContact", supUser.getContacts().size());
-            req.setAttribute("nbSMS", smsDao.getUserSMS(supUser).size());
+            req.setAttribute("nbSMS", 0 /*smsDao.getUserSMS(supUser).size()*/);
         } else {
             req.setAttribute("nbSMS", 0 /*smsDao.getNbSMS()*/);
         }
