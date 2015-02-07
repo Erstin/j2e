@@ -53,7 +53,6 @@ public class JpaSMSDao implements SMSDao {
         delete.where(cb.equal(e.get(SMS_.receiver), receiver));
         delete.where(cb.equal(e.get(SMS_.sender), sender));
 
-        // perform update
         this.em.createQuery(delete).executeUpdate();
     }
 
@@ -88,13 +87,14 @@ public class JpaSMSDao implements SMSDao {
 
         CriteriaQuery<SMS> query = cb.createQuery(SMS.class);
         Root<SMS> sms = query.from(SMS.class);
-        List<Predicate> predicates = new ArrayList();
-
-        if (receiver != null) {
-            predicates.add(cb.equal(sms.get(SMS_.receiver), receiver));
-        }
-
-        query.where(predicates.toArray(new Predicate[predicates.size()]));
+        query.select(sms);
+//        List<Predicate> predicates = new ArrayList();
+//
+//        if (receiver != null) {
+//            predicates.add(cb.equal(sms.get(SMS_.receiver), receiver));
+//        }
+//
+//        query.where(predicates.toArray(new Predicate[predicates.size()]));
 
         return em.createQuery(query).getResultList();
     }
