@@ -18,20 +18,23 @@
         </div>
     </form>
     <table class="table table-striped">
-        <th>
-        <td>Num&eacute;ro de t&eacute;l&eacute;phone</td>
-        <td>Dernier message</td>
-    </th>
-    <c:forEach items="${senders}" var="sender">
-        <tr>
-            <c:url var="smsUrl" value="/sms?phone=${sender.key.phoneNumber}" />
-            <td>
-                <a href="${smsUrl}">${sender.key.phoneNumber}</a>
-            </td>
-            <td>
-                ${sender.value.message}
-            </td>
-        </tr>
-    </c:forEach>
-</table>
+        <tbody>
+            <tr>
+                <td>Num&eacute;ro de t&eacute;l&eacute;phone</td>
+                <td>Dernier message</td>
+            </tr>
+
+            <c:forEach items="${senders}" var="sender">
+                <tr>
+                    <c:url var="smsUrl" value="/sms?phone=${sender.key.phoneNumber}" />
+                    <td>
+                        <a href="${smsUrl}">${sender.key.phoneNumber}</a>
+                    </td>
+                    <td>
+                        ${sender.value.message}
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </t:body>
