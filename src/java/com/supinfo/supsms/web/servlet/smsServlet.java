@@ -121,9 +121,9 @@ public class smsServlet extends HttpServlet {
             String message = req.getParameter("message");
             sms.setMessage(message);
 
+            smsDao.addSMS(sms);
             try {
                 sendSMSService.send(sms);
-                // smsDao.addSMS(sms);
             } catch (JMSException ex) {
                 Logger.getLogger(smsServlet.class.getName()).log(Level.SEVERE, null, ex);
                 goToSmsPage(me, req, resp);

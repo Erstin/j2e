@@ -6,7 +6,9 @@ import com.supinfo.supsms.entity.SMS_;
 import com.supinfo.supsms.entity.SupUser;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +34,8 @@ public class JpaSMSDao implements SMSDao {
 
     @Override
     public void addSMS(SMS sms) {
-        Timestamp time = new Timestamp(new Date().getTime());
-        sms.setDateSent(time);
+        Calendar time = new GregorianCalendar();
+        sms.setId(time);
 
         em.persist(sms);
     }
@@ -72,7 +74,7 @@ public class JpaSMSDao implements SMSDao {
             predicates.add(cb.equal(sms.get(SMS_.sender), sender));
         }
         if (dateSent != null) {
-            predicates.add(cb.equal(sms.get(SMS_.dateSent).as(Timestamp.class), dateSent));
+            predicates.add(cb.equal(sms.get(SMS_.id), dateSent));
         }
 
         query.where(predicates.toArray(new Predicate[predicates.size()]));
@@ -106,7 +108,7 @@ public class JpaSMSDao implements SMSDao {
 
         for (SMS sms : getUserSMS(receiver)) {
             SMS exist = res.get(sms.getSender());
-            if (exist == null || exist.getDateSent().before(sms.getDateSent())) {
+            if (exist == null || exist.getId() < sms.getId()) {
                 res.put(sms.getSender(), sms);
             }
         }

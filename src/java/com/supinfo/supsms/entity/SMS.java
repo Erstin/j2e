@@ -5,21 +5,30 @@
  */
 package com.supinfo.supsms.entity;
 
+import com.supinfo.supsms.entity.PK.SMSPrimaryKeys;
 import com.supinfo.supsms.utils.Pair;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import sun.util.calendar.Gregorian;
 
 /**
  *
  * @author ___Cid___
  */
 @Entity
+@IdClass(SMSPrimaryKeys.class)
 public class SMS implements Serializable {
+    
     private static long serialVersionUID = 1L;
 
     /**
@@ -37,6 +46,9 @@ public class SMS implements Serializable {
     }
     
     @Id
+    private Long id;
+    
+    @Id
     @ManyToOne
     @JoinColumn
     private SupUser receiver;
@@ -45,9 +57,6 @@ public class SMS implements Serializable {
     @ManyToOne
     @JoinColumn
     private SupUser sender;
-    
-    @Id
-    private Timestamp dateSent;
     
     @Column
     private String message;
@@ -70,13 +79,16 @@ public class SMS implements Serializable {
         Pair<SupUser, SupUser> thisId = new Pair<SupUser, SupUser> (sender, receiver);
         Pair<SupUser, SupUser> otherId = new Pair<SupUser, SupUser> (other.getSender(), other.getReceiver());
         
-        return thisId.equals(otherId) && dateSent.equals(other.getDateSent());
+        return thisId.equals(otherId) && id.equals(other.getId());
     }
 
     @Override
     public String toString() {
+        Calendar time =  new GregorianCalendar();
+        time.setTime(new Date(id));
         Pair<SupUser, SupUser> thisId = new Pair<SupUser, SupUser> (sender, receiver);
-        return "com.supinfo.supsms.entity.SMS[ id=" + thisId.toString() + ", at=" + getDateSent() + " ]";
+        return "com.supinfo.supsms.entity.SMS[ id=" + thisId.toString() + ", at="
+                + time + " ]";
     }
 
     /**
@@ -110,15 +122,15 @@ public class SMS implements Serializable {
     /**
      * @return the dateSent
      */
-    public Timestamp getDateSent() {
-        return dateSent;
+    public Long getId() {
+        return id;
     }
 
     /**
      * @param dateSent the dateSent to set
      */
-    public void setDateSent(Timestamp dateSent) {
-        this.dateSent = dateSent;
+    public void setId(Calendar dateSent) {
+        this.id = dateSent.getTimeInMillis();
     }
 
     /**
