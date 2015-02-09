@@ -2,15 +2,19 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:body ongletTitle="${ongletTitle}">
-    <form method="POST">
-        <div class="form-group">
-            <label for="username">Username :</label>
-            <input type="text" name="username" />
+    <div class="panel panel-default" id="login">
+        <div class="panel-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="username">Username :</label>
+                    <input type="text" name="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password :</label>
+                    <input type="password" name="password" class="form-control" />
+                </div>
+                <button class="btn btn-primary" type="submit" value="Connection">Connexion</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="password">Password :</label>
-            <input type="password" name="password" />
-        </div>
-        <input type="submit" value="Connection" />
-    </form>
+    </div>
 </t:body>

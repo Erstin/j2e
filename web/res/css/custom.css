@@ -1,0 +1,31 @@
+#log {
+    margin-right: 5px;
+}
+
+#panel-title {
+    text-align: center;
+}
+
+#login {
+    width : 95%;
+    margin: 0 auto;
+}
+
+#signin {
+    width : 95%;
+    margin: 0 auto;
+}
+
+#contacts {
+    width : 95%;
+    margin: 0 auto;
+}
+
+#addContact button {
+    margin-top: 5px;
+}
+
+#sms {
+    width : 95%;
+    margin: 0 auto;
+}
